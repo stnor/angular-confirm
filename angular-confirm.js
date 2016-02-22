@@ -45,7 +45,7 @@
         cancel: 'Cancel'
       }
     })
-    .factory('$confirm', ['$uibModal', '$confirmModalDefaults', function ($uibModal, $confirmModalDefaults) {
+    .factory('$confirmModal', ['$uibModal', '$confirmModalDefaults', function ($uibModal, $confirmModalDefaults) {
       return function (data, settings) {
         var defaults = angular.copy($confirmModalDefaults);
         settings = angular.extend(defaults, (settings || {}));
@@ -65,7 +65,7 @@
         return $uibModal.open(settings).result;
       };
     }])
-    .directive('confirm', ['$confirm', function ($confirm) {
+    .directive('confirm', ['$confirmModal', function ($confirmModal) {
       return {
         priority: 1,
         restrict: 'A',
@@ -96,7 +96,7 @@
               if (scope.confirmCancel) {
                 data.cancel = scope.confirmCancel;
               }
-              $confirm(data, scope.confirmSettings || {}).then(scope.ngClick);
+              $confirmModal(data, scope.confirmSettings || {}).then(scope.ngClick);
             } else {
 
               scope.$apply(scope.ngClick);

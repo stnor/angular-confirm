@@ -13,8 +13,8 @@ describe('angularConfirmDialog', function() {
             return $uibModal;
         });
 
-        $provide.decorator('$confirm', function($delegate) {
-            return jasmine.createSpy('$confirm', $delegate);
+        $provide.decorator('$confirmModal', function($delegate) {
+            return jasmine.createSpy('$confirmModal', $delegate);
         });
 
     }));
@@ -55,29 +55,29 @@ describe('angularConfirmDialog', function() {
 
     });
 
-    describe('$confirm factory', function() {
+    describe('$confirmModal factory', function() {
 
-        var $confirm, $confirmModalDefaults;
+        var $confirmModal, $confirmModalDefaults;
 
-        beforeEach(angular.mock.inject(function(_$confirm_, _$confirmModalDefaults_) {
-            $confirm = _$confirm_;
-            $confirm.and.callThrough();
+        beforeEach(angular.mock.inject(function(_$confirmModal_, _$confirmModalDefaults_) {
+            $confirmModal = _$confirmModal_;
+            $confirmModal.and.callThrough();
             $confirmModalDefaults = _$confirmModalDefaults_;
             $uibModal.open.and.callThrough();
         }));
 
         it("should call $uibModal.open", function() {
-            $confirm();
+            $confirmModal();
             expect($uibModal.open).toHaveBeenCalled();
         });
 
         it("should override the defaults with settings passed in", function() {
-            var settings = $confirm({}, {"template": "hello"});
+            var settings = $confirmModal({}, {"template": "hello"});
             expect(settings.template).toEqual("hello");
         });
 		
 		it("should not change the defaults", function() {
-            var settings = $confirm({}, {"templateUrl": "hello"});
+            var settings = $confirmModal({}, {"templateUrl": "hello"});
             expect(settings.templateUrl).toEqual("hello");
 			expect(settings.template).not.toBeDefined();
 			expect($confirmModalDefaults.template).toBeDefined();
@@ -85,26 +85,26 @@ describe('angularConfirmDialog', function() {
         });
 
         it("should override the default labels with the data passed in", function() {
-            var settings = $confirm({title: "Title"});
+            var settings = $confirmModal({title: "Title"});
             var data = settings.resolve.data();
             expect(data.title).toEqual("Title");
             expect(data.ok).toEqual('OK');
         });
 
         it("should remove template if templateUrl is passed in", function() {
-            var settings = $confirm({}, {templateUrl: "abc.txt"});
+            var settings = $confirmModal({}, {templateUrl: "abc.txt"});
             expect(settings.template).not.toBeDefined();
         });
 
     });
 
     describe('confirm directive', function() {
-        var $scope, element, $confirm, data;
+        var $scope, element, $confirmModal, data;
 
-        beforeEach(angular.mock.inject(function (_$confirm_, $compile) {
-            $confirm = _$confirm_;
+        beforeEach(angular.mock.inject(function (_$confirmModal_, $compile) {
+            $confirmModal = _$confirmModal_;
 
-            $confirm.and.callFake(function(d) {
+            $confirmModal.and.callFake(function(d) {
                 data = d;
                 return {then: function() {}}
             });
@@ -138,7 +138,7 @@ describe('angularConfirmDialog', function() {
             it("should call confirm on click and not call the function", function() {
                 element.triggerHandler('click');
                 expect($scope.click).not.toHaveBeenCalled();
-                expect($confirm).toHaveBeenCalled();
+                expect($confirmModal).toHaveBeenCalled();
             });
 
         });
@@ -156,7 +156,7 @@ describe('angularConfirmDialog', function() {
                 $scope.$apply();
                 element.triggerHandler('click');
                 expect($scope.click).not.toHaveBeenCalled();
-                expect($confirm).toHaveBeenCalled();
+                expect($confirmModal).toHaveBeenCalled();
             });
 
             it("should call the function", function() {
@@ -164,7 +164,7 @@ describe('angularConfirmDialog', function() {
                 $scope.$apply();
                 element.triggerHandler('click');
                 expect($scope.click).toHaveBeenCalled();
-                expect($confirm).not.toHaveBeenCalled();
+                expect($confirmModal).not.toHaveBeenCalled();
             });
 
         });
@@ -220,9 +220,9 @@ describe('angularConfirmDialog', function() {
                 $scope.$digest();
             }));
 
-            it("should pass the settings to $confirm", function() {
+            it("should pass the settings to $confirmModal", function() {
                 element.triggerHandler('click');
-                expect($confirm).toHaveBeenCalledWith({text: "Are you sure?"}, $scope.settings)
+                expect($confirmModal).toHaveBeenCalledWith({text: "Are you sure?"}, $scope.settings)
             });
         });
 
@@ -233,9 +233,9 @@ describe('angularConfirmDialog', function() {
                 $scope.$digest();
             }));
 
-            it("should pass the settings to $confirm", function() {
+            it("should pass the settings to $confirmModal", function() {
                 element.triggerHandler('click');
-                expect($confirm).toHaveBeenCalledWith({text: "Are you sure?"}, {name: "Joe"})
+                expect($confirmModal).toHaveBeenCalledWith({text: "Are you sure?"}, {name: "Joe"})
             });
         });
 
