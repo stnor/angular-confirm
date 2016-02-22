@@ -27,3 +27,5 @@ gulp.task('bump-json', function (done) {
     .pipe(bump())
     .pipe(gulp.dest('./'));
 });
+
+gulp.task('default', ['test-unit']);
