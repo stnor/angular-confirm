@@ -1,5 +1,5 @@
 /*
- * angular-confirm
+ * angular-confirm-modal
  * https://github.com/Schlogen/angular-confirm
  * @version v1.2.3 - 2016-01-26
  * @license Apache
@@ -65,14 +65,14 @@
         return $uibModal.open(settings).result;
       };
     }])
-    .directive('confirm', ['$confirmModal', function ($confirmModal) {
+    .directive('confirmModal', ['$confirmModal', function ($confirmModal) {
       return {
         priority: 1,
         restrict: 'A',
         scope: {
           confirmIf: "=",
           ngClick: '&',
-          confirm: '@',
+          confirmModal: '@',
           confirmSettings: "=",
           confirmTitle: '@',
           confirmOk: '@',
@@ -86,7 +86,7 @@
 
             if (angular.isUndefined(scope.confirmIf) || scope.confirmIf) {
 
-              var data = {text: scope.confirm};
+              var data = {text: scope.confirmModal};
               if (scope.confirmTitle) {
                 data.title = scope.confirmTitle;
               }

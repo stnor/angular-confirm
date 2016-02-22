@@ -116,7 +116,7 @@ describe('angularConfirmDialog', function() {
         describe('resolve properties in title', function() {
             beforeEach(angular.mock.inject(function($compile) {
                 $scope.name = 'Joe';
-                element = angular.element('<button type="button" ng-click="click()" confirm="Are you sure, {{name}}?">Delete</button>');
+                element = angular.element('<button type="button" ng-click="click()" confirm-modal="Are you sure, {{name}}?">Delete</button>');
                 $compile(element)($scope);
                 $scope.$digest();
             }));
@@ -130,7 +130,7 @@ describe('angularConfirmDialog', function() {
         describe('without confirmIf', function() {
 
             beforeEach(angular.mock.inject(function($compile) {
-                element = angular.element('<button type="button" ng-click="click()" confirm="Are you sure?">Delete</button>');
+                element = angular.element('<button type="button" ng-click="click()" confirm-modal="Are you sure?">Delete</button>');
                 $compile(element)($scope);
                 $scope.$digest();
             }));
@@ -146,7 +146,7 @@ describe('angularConfirmDialog', function() {
         describe('with confirmIf option', function() {
 
             beforeEach(angular.mock.inject(function($compile) {
-                element = angular.element('<button type="button" ng-click="click()" confirm="Are you sure?" confirm-if="truthy">Delete</button>');
+                element = angular.element('<button type="button" ng-click="click()" confirm-modal="Are you sure?" confirm-if="truthy">Delete</button>');
                 $compile(element)($scope);
                 $scope.$digest();
             }));
@@ -172,7 +172,7 @@ describe('angularConfirmDialog', function() {
         describe('with confirmTitle option', function() {
             beforeEach(angular.mock.inject(function($compile) {
                 $scope.name = 'Joe';
-                element = angular.element('<button type="button" ng-click="click()" confirm="Are you sure?" confirm-title="Hello, {{name}}!">Delete</button>');
+                element = angular.element('<button type="button" ng-click="click()" confirm-modal="Are you sure?" confirm-title="Hello, {{name}}!">Delete</button>');
                 $compile(element)($scope);
                 $scope.$digest();
             }));
@@ -187,7 +187,7 @@ describe('angularConfirmDialog', function() {
         describe('with confirmOk option', function() {
             beforeEach(angular.mock.inject(function($compile) {
                 $scope.name = 'Joe';
-                element = angular.element('<button type="button" ng-click="click()" confirm="Are you sure?" confirm-ok="Okie Dokie, {{name}}!">Delete</button>');
+                element = angular.element('<button type="button" ng-click="click()" confirm-modal="Are you sure?" confirm-ok="Okie Dokie, {{name}}!">Delete</button>');
                 $compile(element)($scope);
                 $scope.$digest();
             }));
@@ -201,7 +201,7 @@ describe('angularConfirmDialog', function() {
         describe('with confirmCancel option', function() {
             beforeEach(angular.mock.inject(function($compile) {
                 $scope.name = 'Joe';
-                element = angular.element('<button type="button" ng-click="click()" confirm="Are you sure?" confirm-cancel="No Way, {{name}}!">Delete</button>');
+                element = angular.element('<button type="button" ng-click="click()" confirm-modal="Are you sure?" confirm-cancel="No Way, {{name}}!">Delete</button>');
                 $compile(element)($scope);
                 $scope.$digest();
             }));
@@ -215,7 +215,7 @@ describe('angularConfirmDialog', function() {
         describe('with confirmSettings option', function() {
             beforeEach(angular.mock.inject(function($compile) {
                 $scope.settings = {name: 'Joe'};
-                element = angular.element('<button type="button" ng-click="click()" confirm="Are you sure?" confirm-settings="settings">Delete</button>');
+                element = angular.element('<button type="button" ng-click="click()" confirm-modal="Are you sure?" confirm-settings="settings">Delete</button>');
                 $compile(element)($scope);
                 $scope.$digest();
             }));
@@ -228,7 +228,7 @@ describe('angularConfirmDialog', function() {
 
         describe('with confirmSettings option direct entry', function() {
             beforeEach(angular.mock.inject(function($compile) {
-                element = angular.element('<button type="button" ng-click="click()" confirm="Are you sure?" confirm-settings="{name: \'Joe\'}">Delete</button>');
+                element = angular.element('<button type="button" ng-click="click()" confirm-modal="Are you sure?" confirm-settings="{name: \'Joe\'}">Delete</button>');
                 $compile(element)($scope);
                 $scope.$digest();
             }));
