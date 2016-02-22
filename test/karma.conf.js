@@ -18,7 +18,7 @@ module.exports = function(config) {
       '../node_modules/angular/angular.js',
       '../node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.min.js',
       '../node_modules/angular-mocks/angular-mocks.js',
-      '../angular-confirm.js',
+      '../angular-confirm-modal.js',
       'unit/**/*Spec.js'
     ],
 

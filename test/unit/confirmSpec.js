@@ -1,8 +1,8 @@
-describe('angularConfirmDialog', function() {
+describe('angularConfirmModal', function() {
 
     var $rootScope, $uibModal;
 
-    beforeEach(angular.mock.module('angularConfirmDialog', function ($provide) {
+    beforeEach(angular.mock.module('angularConfirmModal', function ($provide) {
 
         $provide.decorator('$uibModal', function($delegate) {
             $uibModal = {
